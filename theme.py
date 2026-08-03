@@ -71,93 +71,49 @@ def _b64(filename):
         return base64.b64encode(f.read()).decode()
 
 
-# ── Salesforce OAuth gate ─────────────────────────────────────────────────────
-_SF_AUTHORIZE_URL   = "https://snaplogic.my.salesforce.com/services/oauth2/authorize"
-_SF_TOKEN_URL       = "https://snaplogic.my.salesforce.com/services/oauth2/token"
-_SF_REVOKE_URL      = "https://snaplogic.my.salesforce.com/services/oauth2/revoke"
-_SF_SCOPE           = "id openid offline_access"
-_SF_BASE_URL     = "https://sl-chargeback.streamlit.app"
-_SF_AUTH_KEY     = "chargeback_sf_auth"
+# ── Google OAuth gate (Streamlit native auth) ─────────────────────────────────
+def require_admin(st_obj, page_path=None):
+    """Block the page until the user signs in with a @snaplogic.com Google account.
 
-def require_admin(st_obj, page_path="Asset_Mapping"):
-    """Block the page until the user completes Salesforce OAuth.
+    Requires Streamlit native auth configured in secrets:
+      [auth]
+      redirect_uri = "https://sl-chargeback.streamlit.app/oauth2callback/"
+      cookie_secret = "..."
+      [auth.google]
+      client_id = "..."
+      client_secret = "..."
+      server_metadata_url = "https://accounts.google.com/.well-known/openid-configuration"
 
-    Reads SF_CLIENT_ID and SF_CLIENT_SECRET from st.secrets.
-    The redirect URI must be registered in the Salesforce Connected App
-    for BOTH Asset_Mapping and Cost_Configuration pages.
     Call this after inject_brand() — the nav header still renders.
     """
-    if st_obj.session_state.get(_SF_AUTH_KEY):
-        # Show logged-in user + logout option in a small top strip
-        _u = st_obj.session_state[_SF_AUTH_KEY]
-        _c1, _c2 = st_obj.columns([5, 1])
-        _c1.caption(f"🔐 Signed in as **{_u}**")
-        if _c2.button("Sign out", key="_sf_logout_btn"):
-            try:
-                from streamlit_oauth import OAuth2Component
-                _client_id     = st_obj.secrets["SF_CLIENT_ID"]
-                _client_secret = st_obj.secrets["SF_CLIENT_SECRET"]
-                _oauth = OAuth2Component(
-                    _client_id, _client_secret,
-                    _SF_AUTHORIZE_URL, _SF_TOKEN_URL, _SF_TOKEN_URL, _SF_REVOKE_URL,
-                )
-                if st_obj.session_state.get("_sf_token"):
-                    _oauth.revoke_token(st_obj.session_state["_sf_token"])
-            except Exception:
-                pass
-            for _k in (_SF_AUTH_KEY, "_sf_token"):
-                st_obj.session_state.pop(_k, None)
-            st_obj.rerun()
-        return
+    user = st_obj.experimental_user
 
-    # ── Not authenticated — show login wall ───────────────────────────────────
-    try:
-        from streamlit_oauth import OAuth2Component
-        import base64, json as _json
-
-        _client_id     = st_obj.secrets["SF_CLIENT_ID"]
-        _client_secret = st_obj.secrets["SF_CLIENT_SECRET"]
-    except Exception as _e:
-        st_obj.error(f"OAuth not configured: {_e}. Add SF_CLIENT_ID and SF_CLIENT_SECRET to Streamlit secrets.")
+    if not user.is_logged_in:
+        st_obj.markdown("---")
+        st_obj.markdown(
+            "### 🔒 Admin access required\n"
+            "This page contains configuration that affects cost allocation for all Business Units. "
+            "Sign in with your **SnapLogic Google account** to continue."
+        )
+        _col, _ = st_obj.columns([1, 3])
+        with _col:
+            if st_obj.button("Sign in with Google", type="primary", use_container_width=True, key="_google_login_btn"):
+                st_obj.login("google")
         st_obj.stop()
         return
 
-    _oauth = OAuth2Component(
-        _client_id, _client_secret,
-        _SF_AUTHORIZE_URL, _SF_TOKEN_URL, _SF_TOKEN_URL, _SF_REVOKE_URL,
-    )
+    if not user.email.endswith("@snaplogic.com"):
+        st_obj.error(f"Access restricted to SnapLogic employees. **{user.email}** is not authorised.")
+        if st_obj.button("Sign out", key="_google_logout_wrong"):
+            st_obj.logout()
+        st_obj.stop()
+        return
 
-    st_obj.markdown("---")
-    st_obj.markdown(
-        "### 🔒 Admin access required\n"
-        "This page contains configuration that affects cost allocation for all Business Units. "
-        "Sign in with your **Salesforce (SnapLogic SSO)** account to continue."
-    )
-
-    _redirect_uri = f"{_SF_BASE_URL}/{page_path}"
-    _result = _oauth.authorize_button(
-        name="Sign in with Salesforce",
-        icon="https://www.salesforce.com/etc/designs/sfdc-www/en_us/favicon.ico",
-        redirect_uri=_redirect_uri,
-        scope=_SF_SCOPE,
-        use_container_width=False,
-        key="_sf_auth_btn",
-    )
-
-    if _result:
-        try:
-            _id_token = _result["token"]["id_token"]
-            _payload  = _id_token.split(".")[1]
-            _payload += "=" * (-len(_payload) % 4)
-            _decoded  = _json.loads(base64.b64decode(_payload))
-            _email    = _decoded.get("email", _decoded.get("sub", "unknown"))
-        except Exception:
-            _email = "authenticated user"
-        st_obj.session_state[_SF_AUTH_KEY] = _email
-        st_obj.session_state["_sf_token"]  = _result["token"]
-        st_obj.rerun()
-
-    st_obj.stop()
+    # Authenticated — show user strip
+    _c1, _c2 = st_obj.columns([5, 1])
+    _c1.caption(f"🔐 Signed in as **{user.email}**")
+    if _c2.button("Sign out", key="_google_logout_btn"):
+        st_obj.logout()
 
 
 # ── Main entry point ──────────────────────────────────────────────────────────
