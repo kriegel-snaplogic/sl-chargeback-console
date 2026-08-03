@@ -86,7 +86,7 @@ def require_admin(st_obj, page_path=None):
 
     Call this after inject_brand() — the nav header still renders.
     """
-    user = st_obj.experimental_user
+    user = st_obj.user
 
     if not user.is_logged_in:
         st_obj.markdown("---")
