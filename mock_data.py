@@ -222,7 +222,27 @@ def save_user_state(user_mappings, excluded_users=None, platform_users=None, pro
         pass
 
 def load_user_state():
-    """Return (user_mappings, excluded_users, platform_users, project_mappings) from disk, or None."""
+    """Return (user_mappings, excluded_users, platform_users, project_mappings) or None.
+
+    Priority:
+      1. Streamlit secrets["USER_STATE"] — JSON blob, used in cloud deployments
+         so real user→BU mappings stay out of the public repo.
+      2. Local user_state.json — used in local / dev deployments.
+    """
+    # 1. Streamlit secrets (cloud deployment)
+    try:
+        import streamlit as _st
+        if "USER_STATE" in _st.secrets:
+            _d = json.loads(_st.secrets["USER_STATE"])
+            return (
+                _d.get("user_mappings", []),
+                _d.get("excluded_users", []),
+                _d.get("platform_users", []),
+                _d.get("project_mappings", []),
+            )
+    except Exception:
+        pass
+    # 2. Local file
     try:
         if os.path.exists(_STATE_PATH):
             with open(_STATE_PATH, encoding="utf-8") as _f:
