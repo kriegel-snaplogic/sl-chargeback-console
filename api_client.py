@@ -207,6 +207,8 @@ class SnapLogicClient:
             results = []
             for m in members:
                 email = m.get("email") or m.get("user_id") or m.get("login") or m.get("name", "")
+                if "@" not in email:
+                    continue  # username-only accounts can't be BU-mapped; skip them
                 results.append({
                     "email":  email,
                     "name":   m.get("display_name") or m.get("full_name") or m.get("name") or email,

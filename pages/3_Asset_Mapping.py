@@ -382,9 +382,10 @@ with tab_users:
                 st.session_state.user_mappings.append({"username": _em, "bu_id": _dm[_dom]})
                 _already.add(_em)
             elif _em.endswith("@snaplogic.com"):
-                # Internal SnapLogic staff → distribute across BUs by stable hash
-                _bu_id = _bu_ids[int(_hashlib.md5(_em.encode()).hexdigest(), 16) % len(_bu_ids)]
-                st.session_state.user_mappings.append({"username": _em, "bu_id": _bu_id})
+                # SnapLogic staff → exclude from chargeback, they're platform overhead
+                _excl_set.add(_em)
+                if _em not in set(st.session_state.get("excluded_users", [])):
+                    st.session_state.excluded_users.append(_em)
                 _already.add(_em)
             # Everything else → left unassigned
         save_user_state(
@@ -505,6 +506,27 @@ with tab_users:
                     st.rerun()
 
         st.markdown("---")
+        # One-click: move any @snaplogic.com → bu_other mappings to excluded
+        _sl_in_ext = [m for m in st.session_state.user_mappings
+                      if m["username"].lower().endswith("@snaplogic.com")
+                      and m["bu_id"] == "bu_other"]
+        if _sl_in_ext:
+            if st.button(f"🔄 Exclude {len(_sl_in_ext)} SnapLogic staff from External", key="fix_sl_ext"):
+                _sl_emails = {m["username"].lower() for m in _sl_in_ext}
+                st.session_state.user_mappings = [
+                    m for m in st.session_state.user_mappings
+                    if m["username"].lower() not in _sl_emails
+                ]
+                _excl = list(set(st.session_state.get("excluded_users", [])) | _sl_emails)
+                st.session_state.excluded_users = _excl
+                save_user_state(
+                    st.session_state.user_mappings, _excl,
+                    st.session_state.get("_platform_users", []),
+                    st.session_state.get("project_mappings", []),
+                )
+                st.success(f"✅ Moved {len(_sl_emails)} SnapLogic staff to excluded.")
+                st.rerun()
+
         # Apply rules to all loaded users
         if st.button("⚡ Apply domain rules to all unassigned users", key="apply_domain_rules"):
             _dm = {r["domain"]: r["bu_id"] for r in st.session_state.domain_rules}
@@ -536,6 +558,8 @@ with tab_users:
 
     for _pu in st.session_state.get("_platform_users", []):
         _key = _pu["email"].lower()
+        if "@" not in _key:
+            continue  # username-only accounts can't be BU-mapped
         _all_users[_key] = _pu.get("name") or _key
         if _pu.get("groups"):
             _user_groups[_key] = _pu["groups"]
