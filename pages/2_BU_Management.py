@@ -27,6 +27,8 @@ _platform_users = {u["email"].lower(): u.get("name", u["email"])
                    for u in st.session_state.get("_platform_users", [])}
 for _m in st.session_state.get("user_mappings", []):
     _em = _m["username"].lower()
+    if "@" not in _em:
+        continue  # skip project-space aliases — only real email users count
     _bu_users.setdefault(_m["bu_id"], []).append({
         "email": _em,
         "name":  _platform_users.get(_em, _m["username"]),
