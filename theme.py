@@ -71,6 +71,42 @@ def _b64(filename):
         return base64.b64encode(f.read()).decode()
 
 
+# ── Admin auth gate ───────────────────────────────────────────────────────────
+_ADMIN_KEY = "chargeback_admin_authed"
+
+def require_admin(st_obj):
+    """Block the page unless the user has entered the admin password.
+
+    Password is read from st.secrets["ADMIN_PASSWORD"]. Falls back to a
+    hardcoded default so local dev without secrets.toml still works.
+    Call this after inject_brand() — the nav header will still render.
+    """
+    if st_obj.session_state.get(_ADMIN_KEY):
+        return  # already authenticated this session
+
+    try:
+        _expected = st_obj.secrets.get("ADMIN_PASSWORD", "snaplogic-admin")
+    except Exception:
+        _expected = "snaplogic-admin"
+
+    st_obj.markdown("---")
+    st_obj.markdown(
+        f"### 🔒 Admin access required\n"
+        "This page contains configuration that affects cost allocation for all Business Units. "
+        "Please enter the admin password to continue."
+    )
+    _col, _ = st_obj.columns([1, 2])
+    with _col:
+        _pwd = st_obj.text_input("Admin password", type="password", key="_admin_pw_input")
+        if st_obj.button("Unlock", key="_admin_pw_btn", type="primary", use_container_width=True):
+            if _pwd == _expected:
+                st_obj.session_state[_ADMIN_KEY] = True
+                st_obj.rerun()
+            else:
+                st_obj.error("Incorrect password.")
+    st_obj.stop()
+
+
 # ── Main entry point ──────────────────────────────────────────────────────────
 def inject_brand(st_obj, active="Home"):
     """Call once per page, after set_page_config() and init_session_state()."""

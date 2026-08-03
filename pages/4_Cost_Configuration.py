@@ -12,12 +12,13 @@ from mock_data import (
     init_session_state, compute_monthly_costs, get_bu_name,
     CURRENT_MONTH, BU_COLORS, NODE_TYPE_COSTS,
 )
-from theme import inject_brand
+from theme import inject_brand, require_admin
 
 st.set_page_config(page_title="Cost Configuration | Chargeback Console", page_icon="⚙️", layout="wide",
                    initial_sidebar_state="collapsed")
 init_session_state(st)
 inject_brand(st, active="Cost Config")
+require_admin(st)
 
 st.title("⚙️ Cost Configuration")
 st.caption("Configure platform overhead costs, Snaplex node pricing, and the overhead allocation key.")

@@ -14,12 +14,13 @@ from mock_data import (
     save_user_state,
 )
 from api_client import SnapLogicClient
-from theme import inject_brand
+from theme import inject_brand, require_admin
 
 st.set_page_config(page_title="Asset Mapping | Chargeback Console", page_icon="🔌", layout="wide",
                    initial_sidebar_state="collapsed")
 init_session_state(st)
 inject_brand(st, active="Asset Mapping")
+require_admin(st)
 
 st.title("🔌 Asset Mapping")
 st.caption("Map Snaplexes to business units, and configure project-path and user allocation rules.")
