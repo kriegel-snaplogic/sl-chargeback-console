@@ -134,6 +134,20 @@ def inject_brand(st_obj, active="Home"):
 # ── CSS ───────────────────────────────────────────────────────────────────────
 def _inject_css(st_obj):
     st_obj.markdown(f"""<style>
+/* ── Dark background fires before any content renders ── */
+html, body, .stApp {{
+    background-color: {NAVY} !important;
+}}
+
+/* ── Page fade-in on every navigation ───── */
+@keyframes sl-fadein {{
+    from {{ opacity: 0; transform: translateY(5px); }}
+    to   {{ opacity: 1; transform: translateY(0); }}
+}}
+.main .block-container {{
+    animation: sl-fadein 0.18s ease-out;
+}}
+
 /* ── Global font ─────────────────────────── */
 html, body, [class*="css"] {{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
