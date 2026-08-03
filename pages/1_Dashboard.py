@@ -191,8 +191,7 @@ st.dataframe(
             "Total ($)":     "${:,.0f}",
             "Share (%)":     "{:.1f}%",
             "Exec Minutes":  "{:,.1f}",
-        })
-        .background_gradient(subset=["Total ($)"], cmap="Purples"),
+        }),
     use_container_width=True,
     hide_index=True,
 )
