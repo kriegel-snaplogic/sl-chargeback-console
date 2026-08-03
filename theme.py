@@ -123,6 +123,10 @@ def inject_brand(st_obj, active="Home"):
     _register_plotly_template()
     _envs = active_environments(st_obj)
     _conn_env = _envs[0] if _envs else None
+    # Fall back to Snowflake live badge when no API env is connected
+    _data_source = st_obj.session_state.get("_exec_data_source")
+    if not _conn_env and _data_source == "snowflake":
+        _conn_env = {"name": "Snowflake"}
     _inject_css(st_obj)
     _render_topnav(st_obj, active, _conn_env)
 
