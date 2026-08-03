@@ -222,27 +222,13 @@ def save_user_state(user_mappings, excluded_users=None, platform_users=None, pro
         pass
 
 def load_user_state():
-    """Return (user_mappings, excluded_users, platform_users, project_mappings) or None.
+    """Return (user_mappings, excluded_users, platform_users, project_mappings).
 
     Priority:
-      1. Streamlit secrets["USER_STATE"] — JSON blob, used in cloud deployments
-         so real user→BU mappings stay out of the public repo.
-      2. Local user_state.json — used in local / dev deployments.
+      1. Local user_state.json — saved edits from the Asset Mapping admin UI.
+      2. Hardcoded defaults — DEFAULT_USER_MAPPINGS / DEFAULT_PROJECT_MAPPINGS.
     """
-    # 1. Streamlit secrets (cloud deployment)
-    try:
-        import streamlit as _st
-        if "USER_STATE" in _st.secrets:
-            _d = json.loads(_st.secrets["USER_STATE"])
-            return (
-                _d.get("user_mappings", []),
-                _d.get("excluded_users", []),
-                _d.get("platform_users", []),
-                _d.get("project_mappings", []),
-            )
-    except Exception:
-        pass
-    # 2. Local file
+    # 1. Local file (admin UI saves edits here)
     try:
         if os.path.exists(_STATE_PATH):
             with open(_STATE_PATH, encoding="utf-8") as _f:
@@ -255,7 +241,13 @@ def load_user_state():
             )
     except Exception:
         pass
-    return None
+    # 2. Hardcoded defaults (no local file — fresh deploy or cloud without file persistence)
+    return (
+        [m.copy() for m in DEFAULT_USER_MAPPINGS],
+        list(DEFAULT_EXCLUDED_USERS),
+        [],
+        [m.copy() for m in DEFAULT_PROJECT_MAPPINGS],
+    )
 
 MONTHS = ["Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026", "Jul 2026"]
 CURRENT_MONTH = "Jul 2026"
@@ -351,6 +343,10 @@ DEFAULT_OVERHEAD = {  # allocation_key default: blended 70% headcount / 30% usag
     "duration_cap_sec": 3600,
 }
 
+
+DEFAULT_EXCLUDED_USERS = [
+    # Users whose executions are excluded from cost allocation (training, inactive, bots)
+]
 
 DEFAULT_USER_MAPPINGS = [
     # Real ConnectFasterInc users — user_id overrides project-path attribution
@@ -632,21 +628,17 @@ def init_session_state(st):
         st.session_state.snaplexes = [s.copy() for s in DEFAULT_SNAPLEXES]
     if "overhead" not in st.session_state:
         st.session_state.overhead = DEFAULT_OVERHEAD.copy()
-    # Load user + project mappings from disk early — needed by exec_data path below
+    # Load user + project mappings — always returns data (defaults if no saved file)
     if "user_mappings" not in st.session_state:
-        _saved = load_user_state()
-        if _saved:
-            _um, _excl, _pu, _pm_saved = _saved
-            st.session_state.user_mappings = _um
-            if "excluded_users" not in st.session_state:
-                st.session_state.excluded_users = _excl
-            if _pu and "_platform_users" not in st.session_state:
-                st.session_state["_platform_users"]        = _pu
-                st.session_state["_platform_users_loaded"] = True
-            if _pm_saved and "project_mappings" not in st.session_state:
-                st.session_state.project_mappings = _pm_saved
-        else:
-            st.session_state.user_mappings = [m.copy() for m in DEFAULT_USER_MAPPINGS]
+        _um, _excl, _pu, _pm_saved = load_user_state()
+        st.session_state.user_mappings = _um
+        if "excluded_users" not in st.session_state:
+            st.session_state.excluded_users = _excl
+        if _pu and "_platform_users" not in st.session_state:
+            st.session_state["_platform_users"]        = _pu
+            st.session_state["_platform_users_loaded"] = True
+        if _pm_saved and "project_mappings" not in st.session_state:
+            st.session_state.project_mappings = _pm_saved
     if "project_mappings" not in st.session_state:
         st.session_state.project_mappings = [m.copy() for m in DEFAULT_PROJECT_MAPPINGS]
     if "exec_data" not in st.session_state:
