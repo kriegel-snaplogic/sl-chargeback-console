@@ -18,7 +18,7 @@ st.set_page_config(page_title="Cost Configuration | Chargeback Console", page_ic
                    initial_sidebar_state="collapsed")
 init_session_state(st)
 inject_brand(st, active="Cost Config")
-require_admin(st)
+require_admin(st, page_path="Cost_Configuration")
 
 st.title("⚙️ Cost Configuration")
 st.caption("Configure platform overhead costs, Snaplex node pricing, and the overhead allocation key.")

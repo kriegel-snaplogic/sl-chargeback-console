@@ -71,39 +71,92 @@ def _b64(filename):
         return base64.b64encode(f.read()).decode()
 
 
-# ── Admin auth gate ───────────────────────────────────────────────────────────
-_ADMIN_KEY = "chargeback_admin_authed"
+# ── Salesforce OAuth gate ─────────────────────────────────────────────────────
+_SF_AUTHORIZE_URL   = "https://snaplogic.my.salesforce.com/services/oauth2/authorize"
+_SF_TOKEN_URL       = "https://snaplogic.my.salesforce.com/services/oauth2/token"
+_SF_REVOKE_URL      = "https://snaplogic.my.salesforce.com/services/oauth2/revoke"
+_SF_SCOPE           = "id openid offline_access"
+_SF_BASE_URL     = "https://sl-chargeback.streamlit.app"
+_SF_AUTH_KEY     = "chargeback_sf_auth"
 
-def require_admin(st_obj):
-    """Block the page unless the user has entered the admin password.
+def require_admin(st_obj, page_path="Asset_Mapping"):
+    """Block the page until the user completes Salesforce OAuth.
 
-    Password is read from st.secrets["ADMIN_PASSWORD"]. Falls back to a
-    hardcoded default so local dev without secrets.toml still works.
-    Call this after inject_brand() — the nav header will still render.
+    Reads SF_CLIENT_ID and SF_CLIENT_SECRET from st.secrets.
+    The redirect URI must be registered in the Salesforce Connected App
+    for BOTH Asset_Mapping and Cost_Configuration pages.
+    Call this after inject_brand() — the nav header still renders.
     """
-    if st_obj.session_state.get(_ADMIN_KEY):
-        return  # already authenticated this session
+    if st_obj.session_state.get(_SF_AUTH_KEY):
+        # Show logged-in user + logout option in a small top strip
+        _u = st_obj.session_state[_SF_AUTH_KEY]
+        _c1, _c2 = st_obj.columns([5, 1])
+        _c1.caption(f"🔐 Signed in as **{_u}**")
+        if _c2.button("Sign out", key="_sf_logout_btn"):
+            try:
+                from streamlit_oauth import OAuth2Component
+                _client_id     = st_obj.secrets["SF_CLIENT_ID"]
+                _client_secret = st_obj.secrets["SF_CLIENT_SECRET"]
+                _oauth = OAuth2Component(
+                    _client_id, _client_secret,
+                    _SF_AUTHORIZE_URL, _SF_TOKEN_URL, _SF_TOKEN_URL, _SF_REVOKE_URL,
+                )
+                if st_obj.session_state.get("_sf_token"):
+                    _oauth.revoke_token(st_obj.session_state["_sf_token"])
+            except Exception:
+                pass
+            for _k in (_SF_AUTH_KEY, "_sf_token"):
+                st_obj.session_state.pop(_k, None)
+            st_obj.rerun()
+        return
 
+    # ── Not authenticated — show login wall ───────────────────────────────────
     try:
-        _expected = st_obj.secrets.get("ADMIN_PASSWORD", "snaplogic-admin")
-    except Exception:
-        _expected = "snaplogic-admin"
+        from streamlit_oauth import OAuth2Component
+        import base64, json as _json
+
+        _client_id     = st_obj.secrets["SF_CLIENT_ID"]
+        _client_secret = st_obj.secrets["SF_CLIENT_SECRET"]
+    except Exception as _e:
+        st_obj.error(f"OAuth not configured: {_e}. Add SF_CLIENT_ID and SF_CLIENT_SECRET to Streamlit secrets.")
+        st_obj.stop()
+        return
+
+    _oauth = OAuth2Component(
+        _client_id, _client_secret,
+        _SF_AUTHORIZE_URL, _SF_TOKEN_URL, _SF_TOKEN_URL, _SF_REVOKE_URL,
+    )
 
     st_obj.markdown("---")
     st_obj.markdown(
-        f"### 🔒 Admin access required\n"
+        "### 🔒 Admin access required\n"
         "This page contains configuration that affects cost allocation for all Business Units. "
-        "Please enter the admin password to continue."
+        "Sign in with your **Salesforce (SnapLogic SSO)** account to continue."
     )
-    _col, _ = st_obj.columns([1, 2])
-    with _col:
-        _pwd = st_obj.text_input("Admin password", type="password", key="_admin_pw_input")
-        if st_obj.button("Unlock", key="_admin_pw_btn", type="primary", use_container_width=True):
-            if _pwd == _expected:
-                st_obj.session_state[_ADMIN_KEY] = True
-                st_obj.rerun()
-            else:
-                st_obj.error("Incorrect password.")
+
+    _redirect_uri = f"{_SF_BASE_URL}/{page_path}"
+    _result = _oauth.authorize_button(
+        name="Sign in with Salesforce",
+        icon="https://www.salesforce.com/etc/designs/sfdc-www/en_us/favicon.ico",
+        redirect_uri=_redirect_uri,
+        scope=_SF_SCOPE,
+        use_container_width=False,
+        key="_sf_auth_btn",
+    )
+
+    if _result:
+        try:
+            _id_token = _result["token"]["id_token"]
+            _payload  = _id_token.split(".")[1]
+            _payload += "=" * (-len(_payload) % 4)
+            _decoded  = _json.loads(base64.b64decode(_payload))
+            _email    = _decoded.get("email", _decoded.get("sub", "unknown"))
+        except Exception:
+            _email = "authenticated user"
+        st_obj.session_state[_SF_AUTH_KEY] = _email
+        st_obj.session_state["_sf_token"]  = _result["token"]
+        st_obj.rerun()
+
     st_obj.stop()
 
 

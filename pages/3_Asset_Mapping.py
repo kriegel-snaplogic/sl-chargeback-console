@@ -20,7 +20,7 @@ st.set_page_config(page_title="Asset Mapping | Chargeback Console", page_icon="ð
                    initial_sidebar_state="collapsed")
 init_session_state(st)
 inject_brand(st, active="Asset Mapping")
-require_admin(st)
+require_admin(st, page_path="Asset_Mapping")
 
 st.title("ðŸ”Œ Asset Mapping")
 st.caption("Map Snaplexes to business units, and configure project-path and user allocation rules.")
