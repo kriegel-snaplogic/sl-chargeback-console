@@ -105,7 +105,7 @@ def require_admin(st_obj, page_path=None):
                 # directly into the main page DOM — clicking this link navigates the real
                 # browser tab to the auth URL with no iframe in the chain.
                 st_obj.markdown(
-                    f'<a href="/auth/login?provider={_tok}" target="_self" style="'
+                    f'<a href="/auth/login?provider={_tok}" target="_top" style="'
                     'display:inline-block;width:100%;text-align:center;'
                     'background:#4073FF;color:white;padding:9px 20px;'
                     'border-radius:6px;text-decoration:none;font-weight:600;'
