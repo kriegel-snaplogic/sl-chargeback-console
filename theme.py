@@ -72,13 +72,39 @@ def _b64(filename):
 
 
 # ── Admin gate — Google OAuth with PIN fallback ───────────────────────────────
+_ADMIN_COOKIE = "sl_admin_ok"
+
+def _set_admin_cookie():
+    """Inject a JS snippet (via HTML component) that sets a browser cookie for the domain."""
+    import streamlit.components.v1 as _cmp
+    _cmp.html(
+        f'<script>document.cookie="{_ADMIN_COOKIE}=1; path=/; max-age=86400; samesite=strict; secure";</script>',
+        height=0,
+    )
+
+def _clear_admin_cookie():
+    import streamlit.components.v1 as _cmp
+    _cmp.html(
+        f'<script>document.cookie="{_ADMIN_COOKIE}=; path=/; max-age=0";</script>',
+        height=0,
+    )
+
+def _has_admin_cookie(st_obj):
+    """Check the WebSocket handshake Cookie header for the admin unlock cookie."""
+    try:
+        return f"{_ADMIN_COOKIE}=1" in (st_obj.context.headers.get("cookie") or "")
+    except Exception:
+        return False
+
+
 def require_admin(st_obj, page_path=None):
     """Grant access via Google OAuth (if configured) or a demo PIN from secrets.
 
     Priority:
       1. Google OAuth → @snaplogic.com account
-      2. demo_pin in secrets → session-level access
-      3. No auth configured → open access (demo mode)
+      2. Browser cookie set by previous PIN unlock (persists across page navigations)
+      3. demo_pin in secrets → session-level access (sets cookie for next navigation)
+      4. No auth configured → open access (demo mode)
 
     Add to Streamlit secrets for PIN fallback:
       demo_pin = "your-pin-here"
@@ -100,24 +126,30 @@ def require_admin(st_obj, page_path=None):
                     st_obj.logout()
                 st_obj.stop()
                 return
-            # Authenticated via Google — show user strip and continue
             _c1, _c2 = st_obj.columns([5, 1])
             _c1.caption(f"🔐 Signed in as **{user.email}**")
             if _c2.button("Sign out", key="_google_logout_btn"):
                 st_obj.logout()
-            return  # ← page loads normally
+            return
 
-    # ── 2. Already unlocked this session ─────────────────────────────────────
+    # ── 2. Cookie from previous PIN unlock (survives page navigation) ─────────
+    if _has_admin_cookie(st_obj) and not st_obj.session_state.get("_admin_locked_out"):
+        st_obj.session_state["_admin_unlocked"] = True
+        st_obj.session_state.setdefault("_admin_label", "SnapLogic Admin (PIN)")
+
+    # ── 3. Already unlocked this session ─────────────────────────────────────
     if st_obj.session_state.get("_admin_unlocked"):
         _pin_label = st_obj.session_state.get("_admin_label", "Demo mode")
         _c1, _c2 = st_obj.columns([5, 1])
         _c1.caption(f"🔓 {_pin_label}")
         if _c2.button("Lock", key="_lock_btn"):
             st_obj.session_state["_admin_unlocked"] = False
+            st_obj.session_state["_admin_locked_out"] = True
+            _clear_admin_cookie()
             st_obj.rerun()
-        return  # ← page loads normally
+        return
 
-    # ── 3. Show access gate ───────────────────────────────────────────────────
+    # ── 4. Show access gate ───────────────────────────────────────────────────
     st_obj.markdown("---")
     _demo_pin = None
     try:
@@ -126,7 +158,6 @@ def require_admin(st_obj, page_path=None):
         pass
 
     if _oauth_ok:
-        # OAuth is configured — offer Google sign-in
         st_obj.markdown(
             "### 🔒 Admin access required\n"
             "Sign in with your **SnapLogic Google account** to continue."
@@ -149,11 +180,12 @@ def require_admin(st_obj, page_path=None):
                 if _entered == str(_demo_pin):
                     st_obj.session_state["_admin_unlocked"] = True
                     st_obj.session_state["_admin_label"] = "SnapLogic Admin (PIN)"
+                    st_obj.session_state.pop("_admin_locked_out", None)
+                    _set_admin_cookie()   # persists across page navigations
                     st_obj.rerun()
                 else:
                     st_obj.error("Incorrect PIN.")
     elif not _oauth_ok:
-        # No auth configured at all — open access for demo
         st_obj.session_state["_admin_unlocked"] = True
         st_obj.session_state["_admin_label"] = "Demo mode"
         st_obj.rerun()

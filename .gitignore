@@ -1,0 +1,18 @@
+# State files — contain real user emails, must not be in public repos
+user_state.json
+exec_cache.json
+exec_computed.json
+
+# Env / secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# macOS
+.DS_Store
