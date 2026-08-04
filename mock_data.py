@@ -639,14 +639,15 @@ def init_session_state(st):
             st.session_state["_platform_users_loaded"] = True
         if _pm_saved and "project_mappings" not in st.session_state:
             st.session_state.project_mappings = _pm_saved
-    # Load full platform user list from Streamlit secrets (users_csv_b64) if not yet populated.
-    # Store the CSV in secrets to persist across redeploys without committing real emails to git.
+    # Load full platform user list from bundled CSV (data/platform_users.csv) if not yet populated.
     if not st.session_state.get("_platform_users_loaded"):
         try:
-            import base64 as _b64mod, csv as _csv_mod2, io as _io2
-            _users_b64 = st.secrets.get("users_csv_b64")
-            if _users_b64:
-                _csv_txt = _b64mod.b64decode(_users_b64).decode("utf-8-sig")
+            import csv as _csv_mod2, io as _io2
+            _bundled_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                        "data", "platform_users.csv")
+            if os.path.exists(_bundled_csv):
+                with open(_bundled_csv, encoding="utf-8-sig") as _f2:
+                    _csv_txt = _f2.read()
                 _rows2 = list(_csv_mod2.DictReader(_io2.StringIO(_csv_txt)))
                 _pu2, _seen2 = [], set()
                 for _r in _rows2:
