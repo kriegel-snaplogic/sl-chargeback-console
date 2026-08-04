@@ -97,71 +97,8 @@ def require_admin(st_obj, page_path=None):
         )
         _col, _ = st_obj.columns([1, 3])
         with _col:
-            try:
-                from streamlit.auth_util import encode_provider_token as _enc
-                import streamlit.components.v1 as _c
-                _tok = _enc("google")
-                # The component sandbox has allow-popups + allow-popups-to-escape-sandbox.
-                # window.open() opens a real top-level popup — Google sees sec-fetch-dest:
-                # document instead of iframe and allows the auth flow.
-                # After auth, the popup sets localStorage 'sl_auth_done', which fires a
-                # storage event in this component; we then reload the Streamlit app frame.
-                _c.html(f"""
-<style>
-button {{
-  width:100%;background:#4073FF;color:#fff;border:none;
-  padding:9px 20px;border-radius:6px;font-weight:600;
-  font-size:0.9rem;cursor:pointer;
-}}
-button:hover{{background:#3060ee}}
-button:disabled{{background:#8A9BB5;cursor:default}}
-#msg{{font-size:0.78rem;color:#8A9BB5;margin-top:5px}}
-</style>
-<button id="btn" onclick="start()">Sign in with Google</button>
-<div id="msg"></div>
-<script>
-var popup;
-
-// Auth complete signal from the popup
-window.addEventListener('storage', function(e) {{
-  if (e.key === 'sl_auth_done') {{
-    localStorage.removeItem('sl_auth_done');
-    reload();
-  }}
-}});
-
-function reload() {{
-  document.getElementById('btn').textContent = '✓ Signed in — refreshing…';
-  try {{ window.parent.location.reload(); }} catch(e) {{}}
-}}
-
-function start() {{
-  var btn = document.getElementById('btn');
-  var msg = document.getElementById('msg');
-  btn.disabled = true;
-  btn.textContent = 'Opening sign-in…';
-  popup = window.open(
-    '/auth/login?provider={_tok}',
-    'sl_auth',
-    'popup=1,width=540,height=680,left='+(screen.width/2-270)+',top='+(screen.height/2-340)
-  );
-  if (!popup) {{
-    btn.disabled = false;
-    btn.textContent = 'Sign in with Google';
-    msg.textContent = '⚠ Pop-up blocked — please allow pop-ups for this site.';
-    return;
-  }}
-  // Fallback: poll for popup closure (user closed it after auth)
-  var poll = setInterval(function() {{
-    if (!popup || popup.closed) {{ clearInterval(poll); reload(); }}
-  }}, 600);
-  msg.textContent = 'Complete sign-in in the pop-up, then return here.';
-}}
-</script>
-""", height=80)
-            except Exception:
-                if st_obj.button("Sign in with Google", type="primary", use_container_width=True, key="_google_login_btn"):
-                    st_obj.login("google")
+            if st_obj.button("Sign in with Google", type="primary", use_container_width=True, key="_google_login_btn"):
+                st_obj.login("google")
         st_obj.stop()
         return
 
@@ -192,23 +129,6 @@ def inject_brand(st_obj, active="Home"):
         _conn_env = {"name": "Snowflake"}
     _inject_css(st_obj)
     _render_topnav(st_obj, active, _conn_env)
-
-    # If this page is the post-auth landing inside the popup window, signal the
-    # opener and close — the opener's storage event handler will reload the app.
-    try:
-        import streamlit.components.v1 as _c
-        if getattr(getattr(st_obj, "user", None), "is_logged_in", False):
-            _c.html("""<script>
-(function() {
-  var top = window.top || window;
-  if (top.opener && !top.opener.closed) {
-    try { localStorage.setItem('sl_auth_done', '1'); } catch(e) {}
-    setTimeout(function() { top.close(); }, 250);
-  }
-})();
-</script>""", height=0)
-    except Exception:
-        pass
 
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
