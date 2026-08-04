@@ -72,29 +72,14 @@ def _b64(filename):
 
 
 # ── Admin gate — Google OAuth with PIN fallback ───────────────────────────────
-_ADMIN_COOKIE = "sl_admin_ok"
+import hashlib as _hashlib
 
-def _set_admin_cookie():
-    """Inject a JS snippet (via HTML component) that sets a browser cookie for the domain."""
-    import streamlit.components.v1 as _cmp
-    _cmp.html(
-        f'<script>document.cookie="{_ADMIN_COOKIE}=1; path=/; max-age=86400; samesite=strict; secure";</script>',
-        height=0,
-    )
+_ADMIN_PARAM = "s"   # URL query param that carries the session token
 
-def _clear_admin_cookie():
-    import streamlit.components.v1 as _cmp
-    _cmp.html(
-        f'<script>document.cookie="{_ADMIN_COOKIE}=; path=/; max-age=0";</script>',
-        height=0,
-    )
 
-def _has_admin_cookie(st_obj):
-    """Check the WebSocket handshake Cookie header for the admin unlock cookie."""
-    try:
-        return f"{_ADMIN_COOKIE}=1" in (st_obj.context.headers.get("cookie") or "")
-    except Exception:
-        return False
+def _pin_token(pin: str) -> str:
+    """Derive a short URL-safe token from the PIN (not secret, just obfuscated)."""
+    return _hashlib.sha256(f"sl-admin-{pin}".encode()).hexdigest()[:12]
 
 
 def require_admin(st_obj, page_path=None):
@@ -102,8 +87,8 @@ def require_admin(st_obj, page_path=None):
 
     Priority:
       1. Google OAuth → @snaplogic.com account
-      2. Browser cookie set by previous PIN unlock (persists across page navigations)
-      3. demo_pin in secrets → session-level access (sets cookie for next navigation)
+      2. URL query param ?s=<token> — set on PIN success and carried in nav links
+      3. demo_pin in secrets → prompt once; on success the token is added to the URL
       4. No auth configured → open access (demo mode)
 
     Add to Streamlit secrets for PIN fallback:
@@ -132,10 +117,19 @@ def require_admin(st_obj, page_path=None):
                 st_obj.logout()
             return
 
-    # ── 2. Cookie from previous PIN unlock (survives page navigation) ─────────
-    if _has_admin_cookie(st_obj) and not st_obj.session_state.get("_admin_locked_out"):
-        st_obj.session_state["_admin_unlocked"] = True
-        st_obj.session_state.setdefault("_admin_label", "SnapLogic Admin (PIN)")
+    # ── Resolve PIN from secrets ───────────────────────────────────────────────
+    _demo_pin = None
+    try:
+        _demo_pin = st_obj.secrets.get("demo_pin") or st_obj.secrets.get("DEMO_PIN")
+    except Exception:
+        pass
+
+    # ── 2. URL token check (survives page navigation via nav links) ────────────
+    if _demo_pin:
+        _expected = _pin_token(str(_demo_pin))
+        if st_obj.query_params.get(_ADMIN_PARAM) == _expected:
+            st_obj.session_state["_admin_unlocked"] = True
+            st_obj.session_state.setdefault("_admin_label", "SnapLogic Admin")
 
     # ── 3. Already unlocked this session ─────────────────────────────────────
     if st_obj.session_state.get("_admin_unlocked"):
@@ -144,18 +138,15 @@ def require_admin(st_obj, page_path=None):
         _c1.caption(f"🔓 {_pin_label}")
         if _c2.button("Lock", key="_lock_btn"):
             st_obj.session_state["_admin_unlocked"] = False
-            st_obj.session_state["_admin_locked_out"] = True
-            _clear_admin_cookie()
+            try:
+                del st_obj.query_params[_ADMIN_PARAM]
+            except Exception:
+                pass
             st_obj.rerun()
         return
 
     # ── 4. Show access gate ───────────────────────────────────────────────────
     st_obj.markdown("---")
-    _demo_pin = None
-    try:
-        _demo_pin = st_obj.secrets.get("demo_pin") or st_obj.secrets.get("DEMO_PIN")
-    except Exception:
-        pass
 
     if _oauth_ok:
         st_obj.markdown(
@@ -178,10 +169,10 @@ def require_admin(st_obj, page_path=None):
                                          placeholder="Enter PIN from Streamlit secrets")
             if st_obj.button("Unlock", key="_pin_submit"):
                 if _entered == str(_demo_pin):
+                    # Write token into URL — nav links will carry it automatically
+                    st_obj.query_params[_ADMIN_PARAM] = _pin_token(str(_demo_pin))
                     st_obj.session_state["_admin_unlocked"] = True
-                    st_obj.session_state["_admin_label"] = "SnapLogic Admin (PIN)"
-                    st_obj.session_state.pop("_admin_locked_out", None)
-                    _set_admin_cookie()   # persists across page navigations
+                    st_obj.session_state["_admin_label"] = "SnapLogic Admin"
                     st_obj.rerun()
                 else:
                     st_obj.error("Incorrect PIN.")
@@ -199,13 +190,15 @@ def inject_brand(st_obj, active="Home"):
     from mock_data import active_environments
     _register_plotly_template()
     _envs = active_environments(st_obj)
+    # Carry admin token through nav links so PIN survives page navigation
+    _admin_tok = st_obj.query_params.get(_ADMIN_PARAM, "")
     _conn_env = _envs[0] if _envs else None
     # Fall back to Snowflake live badge when no API env is connected
     _data_source = st_obj.session_state.get("_exec_data_source")
     if not _conn_env and _data_source == "snowflake":
         _conn_env = {"name": "Snowflake"}
     _inject_css(st_obj)
-    _render_topnav(st_obj, active, _conn_env)
+    _render_topnav(st_obj, active, _conn_env, _admin_tok)
 
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
@@ -471,7 +464,7 @@ hr {{ border-color: {_BORDER} !important; }}
 
 
 # ── Top nav renderer ──────────────────────────────────────────────────────────
-def _render_topnav(st_obj, active, conn_env):
+def _render_topnav(st_obj, active, conn_env, admin_tok=""):
     logo_b64 = _b64("snaplogic-logo-white.png")
 
     if conn_env:
@@ -481,9 +474,12 @@ def _render_topnav(st_obj, active, conn_env):
         badge_cls = "sl-topnav-badge sl-badge-demo"
         badge_txt = "◌ Demo mode"
 
+    # Append admin token to all nav links so PIN auth survives page navigation
+    _qs = f"?{_ADMIN_PARAM}={admin_tok}" if admin_tok else ""
+
     links_html = ""
     for path, label in NAV_ITEMS:
-        href = f"/{path}" if path else "/"
+        href = (f"/{path}" if path else "/") + _qs
         is_active = (label == active)
         cls = "sl-navlink sl-navlink-active" if is_active else "sl-navlink"
         links_html += f'<a href="{href}" class="{cls}" target="_self">{label}</a>\n'

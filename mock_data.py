@@ -639,6 +639,31 @@ def init_session_state(st):
             st.session_state["_platform_users_loaded"] = True
         if _pm_saved and "project_mappings" not in st.session_state:
             st.session_state.project_mappings = _pm_saved
+    # Load full platform user list from Streamlit secrets (users_csv_b64) if not yet populated.
+    # Store the CSV in secrets to persist across redeploys without committing real emails to git.
+    if not st.session_state.get("_platform_users_loaded"):
+        try:
+            import base64 as _b64mod, csv as _csv_mod2, io as _io2
+            _users_b64 = st.secrets.get("users_csv_b64")
+            if _users_b64:
+                _csv_txt = _b64mod.b64decode(_users_b64).decode("utf-8-sig")
+                _rows2 = list(_csv_mod2.DictReader(_io2.StringIO(_csv_txt)))
+                _pu2, _seen2 = [], set()
+                for _r in _rows2:
+                    _em = (_r.get("Email") or "").strip().lower()
+                    _nm = (_r.get("Name") or "").strip()
+                    _grp = (_r.get("Groups") or "").strip()
+                    if not _em or "@" not in _em or _em in _seen2:
+                        continue
+                    _seen2.add(_em)
+                    _pu2.append({"email": _em, "name": _nm or _em,
+                                 "roles": [_r.get("Role", "")],
+                                 "groups": _grp.split()})
+                if _pu2:
+                    st.session_state["_platform_users"]        = _pu2
+                    st.session_state["_platform_users_loaded"] = True
+        except Exception:
+            pass
     if "project_mappings" not in st.session_state:
         st.session_state.project_mappings = [m.copy() for m in DEFAULT_PROJECT_MAPPINGS]
     if "exec_data" not in st.session_state:
