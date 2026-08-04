@@ -71,49 +71,94 @@ def _b64(filename):
         return base64.b64encode(f.read()).decode()
 
 
-# ── Google OAuth gate (Streamlit native auth) ─────────────────────────────────
+# ── Admin gate — Google OAuth with PIN fallback ───────────────────────────────
 def require_admin(st_obj, page_path=None):
-    """Block the page until the user signs in with a @snaplogic.com Google account.
+    """Grant access via Google OAuth (if configured) or a demo PIN from secrets.
 
-    Requires Streamlit native auth configured in secrets:
-      [auth]
-      redirect_uri = "https://sl-chargeback.streamlit.app/oauth2callback/"
-      cookie_secret = "..."
-      [auth.google]
-      client_id = "..."
-      client_secret = "..."
-      server_metadata_url = "https://accounts.google.com/.well-known/openid-configuration"
+    Priority:
+      1. Google OAuth → @snaplogic.com account
+      2. demo_pin in secrets → session-level access
+      3. No auth configured → open access (demo mode)
 
-    Call this after inject_brand() — the nav header still renders.
+    Add to Streamlit secrets for PIN fallback:
+      demo_pin = "your-pin-here"
     """
-    user = st_obj.user
+    # ── 1. Google OAuth path ───────────────────────────────────────────────────
+    _oauth_ok = False
+    try:
+        _auth_cfg = st_obj.secrets.get("auth", {})
+        _oauth_ok = bool(_auth_cfg.get("google", {}).get("client_id"))
+    except Exception:
+        pass
 
-    if not user.is_logged_in:
-        st_obj.markdown("---")
+    if _oauth_ok:
+        user = st_obj.user
+        if user.is_logged_in:
+            if not user.email.endswith("@snaplogic.com"):
+                st_obj.error(f"Access restricted to SnapLogic employees. **{user.email}** is not authorised.")
+                if st_obj.button("Sign out", key="_google_logout_wrong"):
+                    st_obj.logout()
+                st_obj.stop()
+                return
+            # Authenticated via Google — show user strip and continue
+            _c1, _c2 = st_obj.columns([5, 1])
+            _c1.caption(f"🔐 Signed in as **{user.email}**")
+            if _c2.button("Sign out", key="_google_logout_btn"):
+                st_obj.logout()
+            return  # ← page loads normally
+
+    # ── 2. Already unlocked this session ─────────────────────────────────────
+    if st_obj.session_state.get("_admin_unlocked"):
+        _pin_label = st_obj.session_state.get("_admin_label", "Demo mode")
+        _c1, _c2 = st_obj.columns([5, 1])
+        _c1.caption(f"🔓 {_pin_label}")
+        if _c2.button("Lock", key="_lock_btn"):
+            st_obj.session_state["_admin_unlocked"] = False
+            st_obj.rerun()
+        return  # ← page loads normally
+
+    # ── 3. Show access gate ───────────────────────────────────────────────────
+    st_obj.markdown("---")
+    _demo_pin = None
+    try:
+        _demo_pin = st_obj.secrets.get("demo_pin") or st_obj.secrets.get("DEMO_PIN")
+    except Exception:
+        pass
+
+    if _oauth_ok:
+        # OAuth is configured — offer Google sign-in
         st_obj.markdown(
             "### 🔒 Admin access required\n"
-            "This page contains configuration that affects cost allocation for all Business Units. "
             "Sign in with your **SnapLogic Google account** to continue."
         )
         _col, _ = st_obj.columns([1, 3])
         with _col:
             if st_obj.button("Sign in with Google", type="primary", use_container_width=True, key="_google_login_btn"):
                 st_obj.login("google")
-        st_obj.stop()
-        return
+    else:
+        st_obj.markdown(
+            "### 🔒 Configuration page\n"
+            "Enter the access PIN to continue."
+        )
 
-    if not user.email.endswith("@snaplogic.com"):
-        st_obj.error(f"Access restricted to SnapLogic employees. **{user.email}** is not authorised.")
-        if st_obj.button("Sign out", key="_google_logout_wrong"):
-            st_obj.logout()
-        st_obj.stop()
-        return
+    if _demo_pin:
+        with st_obj.expander("🔑 Enter PIN" if _oauth_ok else "🔑 PIN required", expanded=not _oauth_ok):
+            _entered = st_obj.text_input("Access PIN", type="password", key="_pin_input",
+                                         placeholder="Enter PIN from Streamlit secrets")
+            if st_obj.button("Unlock", key="_pin_submit"):
+                if _entered == str(_demo_pin):
+                    st_obj.session_state["_admin_unlocked"] = True
+                    st_obj.session_state["_admin_label"] = "SnapLogic Admin (PIN)"
+                    st_obj.rerun()
+                else:
+                    st_obj.error("Incorrect PIN.")
+    elif not _oauth_ok:
+        # No auth configured at all — open access for demo
+        st_obj.session_state["_admin_unlocked"] = True
+        st_obj.session_state["_admin_label"] = "Demo mode"
+        st_obj.rerun()
 
-    # Authenticated — show user strip
-    _c1, _c2 = st_obj.columns([5, 1])
-    _c1.caption(f"🔐 Signed in as **{user.email}**")
-    if _c2.button("Sign out", key="_google_logout_btn"):
-        st_obj.logout()
+    st_obj.stop()
 
 
 # ── Main entry point ──────────────────────────────────────────────────────────
