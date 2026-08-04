@@ -97,15 +97,23 @@ def require_admin(st_obj, page_path=None):
         )
         _col, _ = st_obj.columns([1, 3])
         with _col:
-            if st_obj.button("Sign in with Google", type="primary", use_container_width=True, key="_google_login_btn"):
-                try:
-                    from streamlit.auth_util import encode_provider_token as _enc
-                    import streamlit.components.v1 as _c
-                    _tok = _enc("google")
-                    # Navigate window.top (real browser tab) instead of Streamlit's internal
-                    # iframe — Google's accountchooser blocks OAuth flows in iframe contexts.
-                    _c.html(f'<script>window.top.location.href="/auth/login?provider={_tok}";</script>', height=0)
-                except Exception:
+            try:
+                from streamlit.auth_util import encode_provider_token as _enc
+                _tok = _enc("google")
+                # st.components.v1.html() uses sandboxed iframes (no allow-top-navigation),
+                # so window.top navigation is silently blocked.  st.markdown() injects HTML
+                # directly into the main page DOM — clicking this link navigates the real
+                # browser tab to the auth URL with no iframe in the chain.
+                st_obj.markdown(
+                    f'<a href="/auth/login?provider={_tok}" target="_self" style="'
+                    'display:inline-block;width:100%;text-align:center;'
+                    'background:#4073FF;color:white;padding:9px 20px;'
+                    'border-radius:6px;text-decoration:none;font-weight:600;'
+                    'font-size:0.9rem;box-sizing:border-box;">Sign in with Google</a>',
+                    unsafe_allow_html=True,
+                )
+            except Exception:
+                if st_obj.button("Sign in with Google", type="primary", use_container_width=True, key="_google_login_btn"):
                     st_obj.login("google")
         st_obj.stop()
         return
