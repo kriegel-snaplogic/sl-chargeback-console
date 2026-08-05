@@ -142,8 +142,19 @@ with tab_projects:
                 if len(_parts) >= 3:
                     _tree[_sp].add(_parts[2])
 
-    # Seed from known_project_paths bundled in user_state.json (fallback when no live data)
-    for _p in st.session_state.get("known_project_paths", []):
+    # Seed from known_project_paths — try session state first, then read directly from file
+    _known_paths = st.session_state.get("known_project_paths") or []
+    if not _known_paths:
+        try:
+            import json as _json
+            _sp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "user_state.json")
+            with open(_sp_file, encoding="utf-8") as _spf:
+                _known_paths = _json.load(_spf).get("known_project_paths", [])
+            if _known_paths:
+                st.session_state["known_project_paths"] = _known_paths
+        except Exception:
+            pass
+    for _p in _known_paths:
         _parts = str(_p).strip("/").split("/")
         if len(_parts) >= 2:
             _sp = _parts[1]
