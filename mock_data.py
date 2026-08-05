@@ -349,18 +349,17 @@ DEFAULT_EXCLUDED_USERS = [
 ]
 
 DEFAULT_USER_MAPPINGS = [
-    # Real ConnectFasterInc users — user_id overrides project-path attribution
-    # (e.g. kriegel runs in snapLogic4snapLogic namespace but costs go to Pre-Sales)
-    {"username": "jarcega@snaplogic.com",        "bu_id": "bu_genai"},
-    {"username": "lwang+admin@snaplogic.com",     "bu_id": "bu_genai"},
-    {"username": "kriegel@snaplogic.com",         "bu_id": "bu_presales"},
-    {"username": "nparmar@snaplogic.com",         "bu_id": "bu_platform"},
-    {"username": "tbranco@snaplogic.com",         "bu_id": "bu_insurance"},
-    {"username": "jholliss@snaplogic.com",        "bu_id": "bu_healthcare"},
-    {"username": "mpentzek@snaplogic.com",        "bu_id": "bu_platform"},
-    {"username": "dbapat@snaplogic.com",          "bu_id": "bu_other"},
-    {"username": "sameerasalamshaikh@gmail.com",  "bu_id": "bu_other"},
-    {"username": "cward@snaplogic.com",           "bu_id": "bu_other"},
+    # Mock user accounts mapped to BUs for demo purposes
+    {"username": "brett.wang@snaplogic.com",      "bu_id": "bu_genai"},
+    {"username": "kelly.flynn@snaplogic.com",      "bu_id": "bu_genai"},
+    {"username": "alex.brooks@snaplogic.com",      "bu_id": "bu_presales"},
+    {"username": "umber.utley@snaplogic.com",      "bu_id": "bu_platform"},
+    {"username": "harper.davis@snaplogic.com",     "bu_id": "bu_insurance"},
+    {"username": "charlie.shah@snaplogic.com",     "bu_id": "bu_healthcare"},
+    {"username": "indira.luna@snaplogic.com",      "bu_id": "bu_platform"},
+    {"username": "avery.vance@snaplogic.com",      "bu_id": "bu_other"},
+    {"username": "jordan.ellis@gmail.com",         "bu_id": "bu_other"},
+    {"username": "nash.singh@snaplogic.com",       "bu_id": "bu_other"},
     # Project-space fallback — matched when USER_ID = full path (no requester on triggered runs)
     # GenAI
     {"username": "Jean-Claude",          "bu_id": "bu_genai"},
