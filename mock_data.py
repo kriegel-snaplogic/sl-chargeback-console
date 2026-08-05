@@ -222,7 +222,7 @@ def save_user_state(user_mappings, excluded_users=None, platform_users=None, pro
         pass
 
 def load_user_state():
-    """Return (user_mappings, excluded_users, platform_users, project_mappings).
+    """Return (user_mappings, excluded_users, platform_users, project_mappings, known_project_paths).
 
     Priority:
       1. Local user_state.json — saved edits from the Asset Mapping admin UI.
@@ -238,6 +238,7 @@ def load_user_state():
                 _d.get("excluded_users", []),
                 _d.get("platform_users", []),
                 _d.get("project_mappings", []),
+                _d.get("known_project_paths", []),
             )
     except Exception:
         pass
@@ -247,6 +248,7 @@ def load_user_state():
         list(DEFAULT_EXCLUDED_USERS),
         [],
         [m.copy() for m in DEFAULT_PROJECT_MAPPINGS],
+        [],
     )
 
 MONTHS = ["Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026", "Jul 2026"]
@@ -629,7 +631,7 @@ def init_session_state(st):
         st.session_state.overhead = DEFAULT_OVERHEAD.copy()
     # Load user + project mappings — always returns data (defaults if no saved file)
     if "user_mappings" not in st.session_state:
-        _um, _excl, _pu, _pm_saved = load_user_state()
+        _um, _excl, _pu, _pm_saved, _kpp = load_user_state()
         st.session_state.user_mappings = _um
         if "excluded_users" not in st.session_state:
             st.session_state.excluded_users = _excl
@@ -638,6 +640,8 @@ def init_session_state(st):
             st.session_state["_platform_users_loaded"] = True
         if _pm_saved and "project_mappings" not in st.session_state:
             st.session_state.project_mappings = _pm_saved
+        if _kpp and "known_project_paths" not in st.session_state:
+            st.session_state["known_project_paths"] = _kpp
     # Load full platform user list from bundled CSV (data/platform_users.csv) if not yet populated.
     if not st.session_state.get("_platform_users_loaded"):
         try:

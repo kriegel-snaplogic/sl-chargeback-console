@@ -142,6 +142,15 @@ with tab_projects:
                 if len(_parts) >= 3:
                     _tree[_sp].add(_parts[2])
 
+    # Seed from known_project_paths bundled in user_state.json (fallback when no live data)
+    for _p in st.session_state.get("known_project_paths", []):
+        _parts = str(_p).strip("/").split("/")
+        if len(_parts) >= 2:
+            _sp = _parts[1]
+            _tree.setdefault(_sp, set())
+            if len(_parts) >= 3:
+                _tree[_sp].add(_parts[2])
+
     # Ensure every already-mapped space/project is represented in the tree
     for _m in st.session_state.project_mappings:
         _pp = _m["project_path"].strip("/").split("/")
