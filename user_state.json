@@ -14,7 +14,7 @@
     },
     {
       "username": "aakrti.arora@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "aamahaja@amazon.com",
@@ -30,10 +30,6 @@
     },
     {
       "username": "abalim@oldmutual.com",
-      "bu_id": "bu_insurance"
-    },
-    {
-      "username": "abauta@barnard.edu",
       "bu_id": "bu_other"
     },
     {
@@ -62,7 +58,7 @@
     },
     {
       "username": "aditi.gandhi@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "aditkadam@deloitte.com",
@@ -74,14 +70,10 @@
     },
     {
       "username": "aditya.gupta@siemens-energy.com",
-      "bu_id": "bu_insurance"
-    },
-    {
-      "username": "agata.krukowska@infosys.com",
       "bu_id": "bu_other"
     },
     {
-      "username": "ahumane@ufl.edu",
+      "username": "agata.krukowska@infosys.com",
       "bu_id": "bu_other"
     },
     {
@@ -94,7 +86,7 @@
     },
     {
       "username": "akshay.kende@siemens.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "akshay.sunil.darekar@accenture.com",
@@ -102,7 +94,7 @@
     },
     {
       "username": "akshay.tiwari@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "aku.tirupathi@infosys.com",
@@ -114,19 +106,19 @@
     },
     {
       "username": "aleksandra.stojanovska@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "ali.dokhanchi@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "allu.prasad@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "alok.tiwari@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "alok.tiwari@virtusa.com",
@@ -142,7 +134,7 @@
     },
     {
       "username": "aman.jain.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "aman.jain@rojoconsultancy.com",
@@ -166,7 +158,7 @@
     },
     {
       "username": "anand.gattu@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "anantasurya.pemmaraju@dentsu.com",
@@ -174,7 +166,7 @@
     },
     {
       "username": "ananth.vaidyam@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "andre.behrens@atos.net",
@@ -190,7 +182,7 @@
     },
     {
       "username": "andrew.clayton@drax.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "andrew@xenet.ai",
@@ -202,7 +194,7 @@
     },
     {
       "username": "angutierrez@contractor.ea.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "anil_behara@infosys.com",
@@ -214,7 +206,7 @@
     },
     {
       "username": "anis.ouhenia@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "anitha_rao@srivensolutions.com",
@@ -258,7 +250,7 @@
     },
     {
       "username": "anubhav.shrivastava@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "anupam.sarkar@capgemini.com",
@@ -266,7 +258,7 @@
     },
     {
       "username": "anuradha.kesharkar.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "anuradha.s.kesharkar@accenture.com",
@@ -302,11 +294,11 @@
     },
     {
       "username": "ashis.chakraborty@varian.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "ashish.simhadri@ideagen.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "ashokkumarreddy.polamreddy@cgi.com",
@@ -318,7 +310,7 @@
     },
     {
       "username": "ashwini.krishnan.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "asishvishnu.kalikiripalli@se.com",
@@ -334,7 +326,7 @@
     },
     {
       "username": "asyed@guardanthealth.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "auzan@jems-group.com",
@@ -346,11 +338,11 @@
     },
     {
       "username": "ayaan.maniyar@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "ayakovleff@powdr.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "ayan.choudhury@bluealtair.com",
@@ -362,11 +354,11 @@
     },
     {
       "username": "bargavi.shreedhar@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "bassam.benidir@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "bayapu.r.konireddy@accenture.com",
@@ -406,11 +398,11 @@
     },
     {
       "username": "brian.almquist@opportun.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "brian.guerra@opportun.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "brijesh.yadav8@wipro.com",
@@ -418,7 +410,7 @@
     },
     {
       "username": "c-lwisinski@planview.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "camille@bravenn.com",
@@ -426,7 +418,7 @@
     },
     {
       "username": "carloseduardo.moreira@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "chakravarthi.n@infosys.com",
@@ -454,7 +446,7 @@
     },
     {
       "username": "christelle.gosset@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "christian.bollensdorff@roche.com",
@@ -466,7 +458,7 @@
     },
     {
       "username": "clovis.celestin@circlepharma.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "compras@itprofessional.es",
@@ -478,11 +470,11 @@
     },
     {
       "username": "cuneyt.yesilkaya@nexentbank.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "cvo@bisontransport.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "dang.nguyen@conversaaugm.com",
@@ -501,10 +493,6 @@
       "bu_id": "bu_other"
     },
     {
-      "username": "daniel_lefteriou@emerson.edu",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "darko.velkov@iwconnect.com",
       "bu_id": "bu_other"
     },
@@ -514,7 +502,7 @@
     },
     {
       "username": "darya.novik@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "dasarileela.bhavani@infosys.com",
@@ -522,11 +510,11 @@
     },
     {
       "username": "datsebha@paloaltonetworks.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "deepak.mishra@fil.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "deshapaka.anusha@infosys.com",
@@ -538,7 +526,7 @@
     },
     {
       "username": "dhanyatha.b@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "dharm.raj@cognizant.com",
@@ -550,11 +538,11 @@
     },
     {
       "username": "dhivyaprakaash.murugesan@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "diane.klehn@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "diego.fernandez@sdggroup.com",
@@ -566,7 +554,7 @@
     },
     {
       "username": "dilip.murugan.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "dillibabu.g@yash.com",
@@ -590,11 +578,11 @@
     },
     {
       "username": "dlavineway@bisontransport.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "douglas.galoro@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "duffyl@arriva.co.uk",
@@ -602,7 +590,7 @@
     },
     {
       "username": "durga.baskar@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "e.ahmadloo@reply.de",
@@ -614,7 +602,7 @@
     },
     {
       "username": "elaghai@bisontransport.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "enda.maguire@nienetworks.co.uk",
@@ -626,7 +614,7 @@
     },
     {
       "username": "erin.hasani@opportun.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "ethan.bellmer@intelligent-ds.co.uk",
@@ -642,11 +630,11 @@
     },
     {
       "username": "fatima.idrissi.ext@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "feike.kok@harmonygroup.eu",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "felicia_john@srivensolutions.com",
@@ -658,7 +646,7 @@
     },
     {
       "username": "fritz.geruschkat@siemens.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "g.strelczuk@reply.com",
@@ -682,7 +670,7 @@
     },
     {
       "username": "gaurav.rai@varian.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "gayajayakumar@deloitte.com",
@@ -694,7 +682,7 @@
     },
     {
       "username": "georg.wiesinger@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "giovanni.franzoni@accenture.com",
@@ -702,7 +690,7 @@
     },
     {
       "username": "gjarrard@powdr.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "gjorge.argirov@iwconnect.com",
@@ -710,7 +698,7 @@
     },
     {
       "username": "gokul.kanagaraju@sony.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "gopinath.nanjaian@infosys.com",
@@ -725,12 +713,8 @@
       "bu_id": "bu_other"
     },
     {
-      "username": "gremishe@sju.edu",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "guido.machmueller@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "guido.schmutz@accenture.com",
@@ -738,15 +722,15 @@
     },
     {
       "username": "gunananthini.sivakumar@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "gunja.daruka@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "gurjeet.singh@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "gururaj.hegde@cognizant.com",
@@ -754,7 +738,7 @@
     },
     {
       "username": "hameedh@adobe.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "hans@ghekiere.net",
@@ -810,7 +794,7 @@
     },
     {
       "username": "hirwandi@healthpeak.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "hkalidindi@deloitte.com",
@@ -818,7 +802,7 @@
     },
     {
       "username": "hkerr@powdr.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "hmadaan@onindus.com",
@@ -830,15 +814,15 @@
     },
     {
       "username": "hugo.todeschini.ext@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "huseyin.aptioglu@nexentbank.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "ian.mckenzie@immunocore.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "igor@varasengineering.com",
@@ -850,11 +834,11 @@
     },
     {
       "username": "imene.bellir.ext@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "irena.okliia@firsttechfed.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "ivana.nikolovska@iwconnect.com",
@@ -882,7 +866,7 @@
     },
     {
       "username": "james.mather@itv.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "janwyl@jems-group.com",
@@ -902,15 +886,15 @@
     },
     {
       "username": "jasmin.destura@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "jasper.vanrijn@opusenergy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "jatinder.preetsinghmann@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "jay.jayadev@coforge.com",
@@ -918,11 +902,11 @@
     },
     {
       "username": "jayu.bhosale@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "jean-claude.ipoule-bossade@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "jeeva.jothi@cognizant.com",
@@ -930,14 +914,6 @@
     },
     {
       "username": "jeffrey.sharpe@opportun.com",
-      "bu_id": "bu_insurance"
-    },
-    {
-      "username": "jfpeng@ufl.edu",
-      "bu_id": "bu_other"
-    },
-    {
-      "username": "jkadyszewski@sju.edu",
       "bu_id": "bu_other"
     },
     {
@@ -954,7 +930,7 @@
     },
     {
       "username": "johannes.schmidtlein@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "john.bell@nienetworks.co.uk",
@@ -966,7 +942,7 @@
     },
     {
       "username": "jos.verstraten@harmonygroup.eu",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "jose.santos@handd.co.uk",
@@ -977,12 +953,8 @@
       "bu_id": "bu_other"
     },
     {
-      "username": "josh.albera-hagerich@ucdenver.edu",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "joshm@truerx.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "jovana.petrovska@dentsu.com",
@@ -1026,11 +998,11 @@
     },
     {
       "username": "kamil.dragon@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "kareem.salem@itv.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "karen.black@hpe.com",
@@ -1042,11 +1014,11 @@
     },
     {
       "username": "karishmaben.vora@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "karthick.srinivasan1@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "kaushik.roy@hpe.com",
@@ -1078,11 +1050,11 @@
     },
     {
       "username": "kiran.hanumakonda@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "kireeti.samala.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "komal.kumari6@in.ey.com",
@@ -1090,7 +1062,7 @@
     },
     {
       "username": "komal.likhar.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "komal.m.likhar@accenture.com",
@@ -1106,7 +1078,7 @@
     },
     {
       "username": "krishna.dubey@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "krishnan_gd@srivensolutions.com",
@@ -1114,11 +1086,11 @@
     },
     {
       "username": "ks.schneider@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "kumar.chandan@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "l.kuntz@reply.de",
@@ -1149,20 +1121,16 @@
       "bu_id": "bu_other"
     },
     {
-      "username": "lijian@uow.edu.au",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "ljupcho.tripunoski@iwconnect.com",
       "bu_id": "bu_other"
     },
     {
       "username": "lovish.sharma@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "ludwig.achhammer@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "luissomoza@miamibeachfl.gov",
@@ -1170,7 +1138,7 @@
     },
     {
       "username": "lynda.nana@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "m.sichalov@accenture.com",
@@ -1181,12 +1149,8 @@
       "bu_id": "bu_other"
     },
     {
-      "username": "maahutch@stanford.edu",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "mahesh.mundhe@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "makarri@deloitte.com",
@@ -1194,7 +1158,7 @@
     },
     {
       "username": "manas.pandey@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "mangala.ishwarya@bluealtair.com",
@@ -1206,26 +1170,22 @@
     },
     {
       "username": "manigandan.ramakrishnan@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
-    },
-    {
-      "username": "manikandan.srinivasan@tyson.com",
-      "bu_id": "bu_insurance"
-    },
-    {
-      "username": "manjula.dharmalingam@astrazeneca.com",
-      "bu_id": "bu_healthcare"
-    },
-    {
-      "username": "manjunath@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
-    },
-    {
-      "username": "manumohan.t@coforge.com",
       "bu_id": "bu_other"
     },
     {
-      "username": "marenas@barnard.edu",
+      "username": "manikandan.srinivasan@tyson.com",
+      "bu_id": "bu_other"
+    },
+    {
+      "username": "manjula.dharmalingam@astrazeneca.com",
+      "bu_id": "bu_other"
+    },
+    {
+      "username": "manjunath@siemens-healthineers.com",
+      "bu_id": "bu_other"
+    },
+    {
+      "username": "manumohan.t@coforge.com",
       "bu_id": "bu_other"
     },
     {
@@ -1238,7 +1198,7 @@
     },
     {
       "username": "mashamabinns@securetrustbank.co.uk",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "maslimani@ayming.com",
@@ -1266,7 +1226,7 @@
     },
     {
       "username": "mgovender2@oldmutual.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "michael.hollett@intelligent-ds.co.uk",
@@ -1274,7 +1234,7 @@
     },
     {
       "username": "michael.minchin@opusenergy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "michael.parr@impellam.com",
@@ -1282,10 +1242,6 @@
     },
     {
       "username": "michael.senegas@veolia.com",
-      "bu_id": "bu_insurance"
-    },
-    {
-      "username": "michael.tatschl@tugraz.at",
       "bu_id": "bu_other"
     },
     {
@@ -1298,7 +1254,7 @@
     },
     {
       "username": "mihir.swain@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "mitali.mantri@cognizant.com",
@@ -1314,7 +1270,7 @@
     },
     {
       "username": "mkolkowski@dfcapital.bank",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "mkoulougli@jems-group.com",
@@ -1334,11 +1290,11 @@
     },
     {
       "username": "mohd.waseem@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "mohit.chaurasia@miovision.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "mohit.kumar@infosys.com",
@@ -1346,7 +1302,7 @@
     },
     {
       "username": "mohit.yadav@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "monika.d01@infosys.com",
@@ -1354,7 +1310,7 @@
     },
     {
       "username": "monisha.manjappah@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "muraleesh.duraisamy@se.com",
@@ -1374,7 +1330,7 @@
     },
     {
       "username": "nadia.schnack@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "nagabalaji.gandhamna@workday.com",
@@ -1390,7 +1346,7 @@
     },
     {
       "username": "nandhini.r@tyson.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "naval@otssolutions.com",
@@ -1402,15 +1358,15 @@
     },
     {
       "username": "nburke@dfcapital.bank",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "neha.vijapur@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "niketan.thakkur@siemens.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "nikhil.verma@infosys.com",
@@ -1426,11 +1382,11 @@
     },
     {
       "username": "nilesh.revanwar@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "nilesh.tiwari@nxp.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "nilofar.moradifarisar@revantage.eu",
@@ -1450,7 +1406,7 @@
     },
     {
       "username": "nitesh.anand@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "nitin.b@infosys.com",
@@ -1477,10 +1433,6 @@
       "bu_id": "bu_other"
     },
     {
-      "username": "oharabag@barnard.edu",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "p.bhogavalli@accenture.com",
       "bu_id": "bu_other"
     },
@@ -1490,7 +1442,7 @@
     },
     {
       "username": "partha.nandi@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "parvathi.kalyanasundaram@hpe.com",
@@ -1498,7 +1450,7 @@
     },
     {
       "username": "pasala@adobe.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "paul.devlin@handd.co.uk",
@@ -1518,7 +1470,7 @@
     },
     {
       "username": "pavithran.venkatachalam.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "pawankumar.r.maurya@in.ey.com",
@@ -1526,19 +1478,15 @@
     },
     {
       "username": "pawel@planview.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "payam.mohajeri@accenture.com",
       "bu_id": "bu_other"
     },
     {
-      "username": "pbaladuru@uow.edu.au",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "pearlb@spotify.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "peroma@baselinked.com",
@@ -1550,23 +1498,23 @@
     },
     {
       "username": "piyush.rawat@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "pooja.pingili@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "prabakaran.duraisamy@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "prachi.shewale@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "pradeep.punnoose@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "pradipta.ranjanpaul@cognizant.com",
@@ -1594,7 +1542,7 @@
     },
     {
       "username": "prasanth.natarajan.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "praveen.bodaballa@yash.com",
@@ -1614,7 +1562,7 @@
     },
     {
       "username": "prerana.devale@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "preyoshi_ghosh@srivensolutions.com",
@@ -1622,7 +1570,7 @@
     },
     {
       "username": "priyanka.bachaboidi@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "priyanka.ghodekar@collinsongroup.com",
@@ -1642,7 +1590,7 @@
     },
     {
       "username": "qumar.hussain@sony.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "r.brink@ghdhair.com",
@@ -1654,7 +1602,7 @@
     },
     {
       "username": "rab.nawaz1@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "rab.nawaz@datapipertech.com",
@@ -1670,7 +1618,7 @@
     },
     {
       "username": "raj-kumar.seil@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "raj.thakur@emirates.com",
@@ -1682,7 +1630,7 @@
     },
     {
       "username": "rajesh.ramasamy@newrez.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "rajeswari_medagam@srivensolutions.com",
@@ -1690,7 +1638,7 @@
     },
     {
       "username": "rajinder@algorithmicenergytrading.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "raju.jyothi@coforge.com",
@@ -1702,7 +1650,7 @@
     },
     {
       "username": "rakesh.marwade@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "ramesh.iyengar@galeysystems.com",
@@ -1734,7 +1682,7 @@
     },
     {
       "username": "rbalusani@guardanthealth.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "reddykanalarajasekhar@bfusa.com",
@@ -1758,7 +1706,7 @@
     },
     {
       "username": "rishika@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "rithwik.reddicherla@infosys.com",
@@ -1770,15 +1718,15 @@
     },
     {
       "username": "ritika.tyagi@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "rnawaz@bisontransport.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "robert.kraus@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "rohit.prakash@in.ibm.com",
@@ -1786,7 +1734,7 @@
     },
     {
       "username": "rohit_-@intuit.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "roopa.ashok@mphasis.com",
@@ -1818,7 +1766,7 @@
     },
     {
       "username": "s.baira@tricentis.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "s.bala.chinnamaru@accenture.com",
@@ -1834,11 +1782,11 @@
     },
     {
       "username": "sacha.visram@drax.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "sachin.singhal@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "sadia.siddiqua@accenture.com",
@@ -1854,7 +1802,7 @@
     },
     {
       "username": "sahil.nama@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "saibalkumar.ghosh@cognizant.com",
@@ -1866,7 +1814,7 @@
     },
     {
       "username": "saikrishna.paturi@ideagen.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "sajal.biswas@cognizant.com",
@@ -1882,15 +1830,15 @@
     },
     {
       "username": "sampath.thammana@syngenta.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "sandeep.anand@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "sandeep.kasaram@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "sandya.talakokkula@wipro.com",
@@ -1898,11 +1846,11 @@
     },
     {
       "username": "sangeetha.subramanian@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "sanjay.humberi@opusenergy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "sanjay.kumar@infosys.com",
@@ -1930,7 +1878,7 @@
     },
     {
       "username": "saraswathi.i@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "sarita.kumari04@infosys.com",
@@ -1946,7 +1894,7 @@
     },
     {
       "username": "sathish.nasana@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "satishkumar.v@yash.com",
@@ -1969,28 +1917,20 @@
       "bu_id": "bu_other"
     },
     {
-      "username": "seanf@uow.edu.au",
+      "username": "sebastian.raffel@siemens-energy.com",
       "bu_id": "bu_other"
     },
     {
-      "username": "sebastian.raffel@siemens-energy.com",
-      "bu_id": "bu_insurance"
-    },
-    {
       "username": "sebastian.vonbeyer@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "seher.soyer@revantage.eu",
       "bu_id": "bu_other"
     },
     {
-      "username": "sghadse@amherst.edu",
-      "bu_id": "bu_other"
-    },
-    {
       "username": "sgoodrich@edelmanfinancialengines.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "shabnam.raja@cognizant.com",
@@ -2002,7 +1942,7 @@
     },
     {
       "username": "shaikmohammed.iliyas@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "shanarayanan@deloitte.com",
@@ -2010,7 +1950,7 @@
     },
     {
       "username": "sharanabasappa.sharanabasappa@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "sharique.anwer@rojoconsultancy.com",
@@ -2034,7 +1974,7 @@
     },
     {
       "username": "shivaji.kondaparthi.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "shivaji_kondaparthi@srivensolutions.com",
@@ -2054,15 +1994,15 @@
     },
     {
       "username": "shravanth.venkatesh@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "shreedevi.ojanalli@opusenergy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "shrushti.narayanaswamy@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "shruti.gurjar@bluealtair.com",
@@ -2090,19 +2030,19 @@
     },
     {
       "username": "siva_suresh.nagisetty@syngenta.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "sivakumar.alwala@cat.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "sjaffer@planview.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "skotekal@ea.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "slarson@halo.com",
@@ -2114,7 +2054,7 @@
     },
     {
       "username": "soundarya.nagarajan@tyson.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "sravan.devarasetty@yash.com",
@@ -2134,11 +2074,11 @@
     },
     {
       "username": "sreenivasulu.muttireddy@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "sridhar.mekala@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "srilaxmi_surineni@srivensolutions.com",
@@ -2170,11 +2110,11 @@
     },
     {
       "username": "subhiksha.nagarajan@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "suja.sathiyamoorthi@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "sumit.kumar2@workday.com",
@@ -2198,7 +2138,7 @@
     },
     {
       "username": "suraj.sharma.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "surajgovind.kshirsagar@cognizant.com",
@@ -2230,7 +2170,7 @@
     },
     {
       "username": "swati.funde@siemens.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "swati.singh@rojoconsultancy.com",
@@ -2246,7 +2186,7 @@
     },
     {
       "username": "taha.moochhala@syncron.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "tanmay.nadkarni@cognizant.com",
@@ -2278,11 +2218,11 @@
     },
     {
       "username": "theofilos.paraskevas@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "thilakavathi.s@cat.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "tusharika.singh@dentsu.com",
@@ -2290,11 +2230,11 @@
     },
     {
       "username": "ulas.ergin@nexentbank.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "urangudu@ea.com",
-      "bu_id": "bu_presales"
+      "bu_id": "bu_other"
     },
     {
       "username": "urmila.vaka@accenture.com",
@@ -2314,7 +2254,7 @@
     },
     {
       "username": "vaibhav.pandya@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "vaibhav.tetoo@yash.com",
@@ -2326,11 +2266,11 @@
     },
     {
       "username": "vaijayanti.maitra@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "valeria.alvarez-garduno@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "valswyn.alfonso@cognizant.com",
@@ -2338,11 +2278,11 @@
     },
     {
       "username": "vamsi.addala@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "vamsi@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "vamsikrishna@itt4u.com",
@@ -2350,7 +2290,7 @@
     },
     {
       "username": "varun.kumar@siemens.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "varun.madan@infosys.com",
@@ -2362,7 +2302,7 @@
     },
     {
       "username": "vedansh.chugh@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "veera_penugonda@infosys.com",
@@ -2382,7 +2322,7 @@
     },
     {
       "username": "venkatamahendra.poreddy@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "venkhatganesh.a@se.com",
@@ -2390,11 +2330,11 @@
     },
     {
       "username": "venubabu.ravipudi@primetherapeutics.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "vibhash.kumar@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "vidhi.lakhotia@yash.com",
@@ -2402,7 +2342,7 @@
     },
     {
       "username": "vidyashree.krishnamurthy.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "vijay.kumar@emirates.com",
@@ -2418,11 +2358,11 @@
     },
     {
       "username": "vikas.gupta@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "vikas.soni@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "vikrant.lnu@cognizant.com",
@@ -2438,7 +2378,7 @@
     },
     {
       "username": "vincent.kim@veolia.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "vincent@bravenn.com",
@@ -2450,7 +2390,7 @@
     },
     {
       "username": "vipin.saini.ext@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "visharad_sharma@infosys.com",
@@ -2458,11 +2398,11 @@
     },
     {
       "username": "vishnu.prasad.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "vishnudev.krishnadas@siemens-healthineers.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "vithyalakshmi.packirisamy@contractor.cci.com",
@@ -2470,7 +2410,7 @@
     },
     {
       "username": "vivek.mohandass@astrazeneca.com",
-      "bu_id": "bu_healthcare"
+      "bu_id": "bu_other"
     },
     {
       "username": "vivek.yadav@infosys.com",
@@ -2494,15 +2434,15 @@
     },
     {
       "username": "yadav.sunny.ext@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "yannic.spiegl@siemens.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "yash.bansal@siemens-energy.com",
-      "bu_id": "bu_insurance"
+      "bu_id": "bu_other"
     },
     {
       "username": "yasvanth.arudchelvam@informa.com",
@@ -2567,17 +2507,23 @@
     {
       "username": "cward@snaplogic.com",
       "bu_id": "bu_other"
+    },
+    {
+      "username": "sameerasalamshaikh@gmail.com",
+      "bu_id": "bu_other"
     }
   ],
   "excluded_users": [
     "aahmadli+admin@snaplogic.com",
     "aahmadli@snaplogic.com",
+    "abauta@barnard.edu",
     "achoudhary+emea@snaplogic.com",
     "agarrett@snaplogic.com",
     "agatakrason@gmail.com",
     "agron.bauta@snaplogic.com",
     "aguinot@snaplogic.com",
     "ahsu@snaplogic.com",
+    "ahumane@ufl.edu",
     "akalashnikov@snaplogic.com",
     "akanchana@snaplogic.com",
     "akesler@snaplogic.com",
@@ -2636,6 +2582,7 @@
     "cward+service@snaplogic.com",
     "cward+team@snaplogic.com",
     "daniel.cromer@snaplogic.com",
+    "daniel_lefteriou@emerson.edu",
     "danish.goud@gmail.com",
     "darren.durand@snaplogic.com",
     "david.keeney@snaplogic.com",
@@ -2665,6 +2612,7 @@
     "gkumar@snaplogic.com",
     "gnkavya1004@gmail.com",
     "greg.mckim@snaplogic.com",
+    "gremishe@sju.edu",
     "gsubhedar@snaplogic.com",
     "hariharan.srinivasan@snaplogic.com",
     "hcherukuri@snaplogic.com",
@@ -2704,13 +2652,16 @@
     "jeff.braddock@snaplogic.com",
     "jefferson.osorioespinoza@gmail.com",
     "jens.steinbuss@t-online.de",
+    "jfpeng@ufl.edu",
     "jhng+1@snaplogic.com",
     "jhng+serviceaccount@snaplogic.com",
     "jhng@snaplogic.com",
     "jitendra.rai@snaplogic.com",
+    "jkadyszewski@sju.edu",
     "jmillhausen@snaplogic.com",
     "john.harkins@snaplogic.com",
     "john.kearns@snaplogic.com",
+    "josh.albera-hagerich@ucdenver.edu",
     "josh.parker@snaplogic.com",
     "jrickard@snaplogic.com",
     "jstone@snaplogic.com",
@@ -2745,16 +2696,19 @@
     "lalit.dahiya@snaplogic.com",
     "lauren.snapp@snaplogic.com",
     "ldrossatos@snaplogic.com",
+    "lijian@uow.edu.au",
     "llaurune@snaplogic.com",
     "llee@snaplogic.com",
     "lrisebro@snaplogic.com",
     "lwang+2@snaplogic.com",
     "lwang@snaplogic.com",
     "ma@snaplogic.com",
+    "maahutch@stanford.edu",
     "mahesh.patil@snaplogic.com",
     "mail.rajgopal@gmail.com",
     "manikantaboyina4@gmail.com",
     "manoj.kumar@snaplogic.com",
+    "marenas@barnard.edu",
     "mark.dossett@snaplogic.com",
     "mbayard@snaplogic.com",
     "mbecker@snaplogic.com",
@@ -2766,6 +2720,7 @@
     "mgibbs@snaplogic.com",
     "mhercules@snaplogic.com",
     "michael.mitchell@snaplogic.com",
+    "michael.tatschl@tugraz.at",
     "mismith@snaplogic.com",
     "mith.srini@gmail.com",
     "mjeong@snaplogic.com",
@@ -2799,7 +2754,9 @@
     "nparmar+oem3@snaplogic.com",
     "npike@snaplogic.com",
     "ocloarec@snaplogic.com",
+    "oharabag@barnard.edu",
     "pavithranvit@gmail.com",
+    "pbaladuru@uow.edu.au",
     "pbouche@snaplogic.com",
     "pchaturvedi@snaplogic.com",
     "pchowdada@snaplogic.com",
@@ -2850,7 +2807,6 @@
     "sabdul@snaplogic.com",
     "sakshibhor744@gmail.com",
     "sameer.tamane@gmail.com",
-    "sameerasalamshaikh@gmail.com",
     "samitbahinipati07@gmail.com",
     "sampath.boyanapalli@gmail.com",
     "samuel.rosenblum@snaplogic.com",
@@ -2860,6 +2816,8 @@
     "scharoenkulvanich@snaplogic.com",
     "schevireddy@snaplogic.com",
     "sclarke@snaplogic.com",
+    "seanf@uow.edu.au",
+    "sghadse@amherst.edu",
     "shashank.shekhar@snaplogic.com",
     "shawn.barker@snaplogic.com",
     "shubhamjain488@gmail.com",
